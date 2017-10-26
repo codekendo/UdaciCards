@@ -1,9 +1,10 @@
 {
   "expo": {
+    "name": "UdaciCards",
     "sdkVersion": "21.0.0",
-    "splash": {
-      "image": "./images/screen.png",
-      "backgroundColor":"#079fc3"
+    "loading": {
+      "backgroundImage": "./images/screen.png",
+      "backgroundColor": "#079fc3",
     }
   }
 }

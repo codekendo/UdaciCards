@@ -1,0 +1,11 @@
+"splash": {
+  "backgroundColor": "#079fc3",
+  "resizeMode": "cover",
+  "ldpi": "./images/ApeToolsGeneratedAssets(1)/Android/res/drawable-land-ldpi/screen.png",
+  "hdpi": "./images/ApeToolsGeneratedAssets(1)/Android/res/drawable-land-ldpi/screen.png",
+  "mdpi": "./images/ApeToolsGeneratedAssets(1)/Android/res/drawable-land-mdpi/screen.png",
+  "xhdpi": "./images/ApeToolsGeneratedAssets(1)/Android/res/drawable-land-xhdpi/screen.png",
+  "xxhdpi": "./images/ApeToolsGeneratedAssets(1)/Android/res/drawable-land-xxhdpi/screen.png",
+  "xxxhdpi": "./images/ApeToolsGeneratedAssets(1)/Android/res/drawable-land-xxxhdpi/screen.png",
+  "image": "./images/screen.png"
+},
