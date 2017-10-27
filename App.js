@@ -11,9 +11,9 @@ import { Constants } from "expo"
 import { createStore } from "redux"
 import { Provider } from "react-redux"
 import QuizView from "./components/QuizView"
-import { clear, getTimeStamp } from "./utils/api"
 import NewDeckView from "./components/NewDeckView"
 import DeckListView from "./components/DeckListView"
+import { clear, setLocalNotification } from "./utils/api"
 import NewQuestionView from "./components/NewQuestionView"
 import { TabNavigator, StackNavigator } from "react-navigation"
 import IndividualDeckView from "./components/IndividualDeckView"
@@ -76,7 +76,8 @@ const Stack = StackNavigator({
 
 export default class App extends React.Component {
   componentDidMount() {
-    clear().then(() => getTimeStamp())
+    clear()
+    setLocalNotification()
   }
 
   render() {

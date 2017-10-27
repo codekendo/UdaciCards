@@ -10,7 +10,7 @@ import {
   TouchableHighlight
 } from "react-native"
 import React from "react"
-import { setToday } from "../utils/api"
+import { clearLocalNotification, setLocalNotification } from "../utils/api"
 import FlipCard from "react-native-flip-card"
 
 export default class QuizView extends React.Component {
@@ -103,7 +103,7 @@ export default class QuizView extends React.Component {
   }
 
   restartQuiz = () => {
-    setToday()
+    clearLocalNotification().then(setLocalNotification)
     this.setState(() => ({
       completed: false,
       scoreTally: 0,
@@ -124,8 +124,8 @@ export default class QuizView extends React.Component {
   }
 
   backToDeck = () => {
-    setToday()
-    this.props.navigation.navigate("Home")
+    clearLocalNotification().then(setLocalNotification)
+    this.props.navigation.goBack()
   }
 
   alert = () => {

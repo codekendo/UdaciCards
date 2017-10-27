@@ -1,33 +1,56 @@
+/*
+Thanks Tyler McGinnis for the code for the Notifications
+*/
 import { AsyncStorage } from "react-native"
+import { Notifications, Permissions } from "expo"
 
 const QUIZ_KEY = "quizData"
 const NOTIFICATION_KEY = "NOTIFICATION_KEY_For_UdaciCards"
 
-export function getTimeStamp() {
-  return AsyncStorage.getItem(NOTIFICATION_KEY).then(res => setDate(res))
-}
-
-function setDate(res) {
-  return res === null ? setDummyDate() : setToday().then(() => date)
-}
-
-function setDummyDate() {
-  var date = new Date()
-  date.setDate(date.getDate() - 1)
-  const stringDate = JSON.stringify(date)
-
-  return AsyncStorage.setItem(NOTIFICATION_KEY, stringDate).then(
-    () => stringDate
+export function clearLocalNotification() {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync
   )
 }
 
-export function setToday() {
-  var date = new Date()
-  const stringDate = JSON.stringify(date)
+function createNotification() {
+  return {
+    title: "Review Cards",
+    body: "⏰ Don't forget to review cards for today!",
+    ios: {
+      sound: true
+    },
+    android: {
+      sound: true,
+      priority: "high",
+      sticky: false,
+      vibrate: true
+    }
+  }
+}
 
-  return AsyncStorage.setItem(NOTIFICATION_KEY, stringDate).then(
-    () => stringDate
-  )
+export function setLocalNotification() {
+  AsyncStorage.getItem(NOTIFICATION_KEY).then(JSON.parse).then(data => {
+    if (data === null) {
+      Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+        if (status === "granted") {
+          Notifications.cancelAllScheduledNotificationsAsync()
+
+          let tomorrow = new Date()
+          tomorrow.setDate(tomorrow.getDate() + 1)
+          tomorrow.setHours(20)
+          tomorrow.setMinutes(0)
+
+          Notifications.scheduleLocalNotificationAsync(createNotification(), {
+            time: tomorrow,
+            repeat: "day"
+          })
+
+          AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+        }
+      })
+    }
+  })
 }
 
 const data = {

@@ -9,7 +9,7 @@ import {
 import React from "react"
 import { AppLoading } from "expo"
 import { connect } from "react-redux"
-import { getQuizData, getTimeStamp } from "../utils/api"
+import { getQuizData } from "../utils/api"
 import { setDataInRedux } from "../actions"
 
 class DeckListView extends React.Component {
@@ -21,13 +21,6 @@ class DeckListView extends React.Component {
   componentDidMount() {
     getQuizData()
       .then(data => this.props.setData(data))
-      .then(() => getTimeStamp())
-      .then(date => JSON.parse(date))
-      .then(date =>
-        this.setState(() => ({
-          date: date
-        }))
-      )
       .then(() => this.setState(() => ({ ready: true })))
   }
 
@@ -52,16 +45,6 @@ class DeckListView extends React.Component {
     )
   }
 
-  checkDate = () => {
-    const { date } = this.state
-    const dateBefore = new Date(date)
-    const dateNow = new Date()
-    var hours = Math.round(Math.abs(dateBefore - dateNow) / 36e5)
-
-    if (hours > 23) {
-      alert("Please complete a review of one of the decks")
-    }
-  }
   render() {
     const { ready } = this.state
     const { data } = this.props
@@ -69,14 +52,8 @@ class DeckListView extends React.Component {
       return <AppLoading />
     }
     if (ready === true) {
-      this.checkDate()
     }
 
-    // const date = new Date()
-    // const calcDifferenceBetweenDates = Math.abs(getTimeStamp.getTime()-date.getTime())/36e5;
-    //     if(calcDifferenceBetweenDates > 24){
-    //       alert('hello')
-    //     }
     return (
       <View style={styles.container}>
         <FlatList
