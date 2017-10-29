@@ -19,8 +19,6 @@ class NewQuestionView extends React.Component {
     title: this.props.title
   }
 
-  componentDidMount() {}
-
   submit = () => {
     const { question, answer, title, questions } = this.state
     const modifiedQuestions = [
