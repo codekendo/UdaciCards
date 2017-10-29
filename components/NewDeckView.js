@@ -7,9 +7,9 @@ import {
 } from "react-native"
 import React from "react"
 import { connect } from "react-redux"
+import { white, black } from "./Stylesheet"
 import { addDeckInRedux } from "../actions"
 import { submitNewDeckTitle } from "../utils/api"
-
 class NewDeckView extends React.Component {
   state = {
     title: ""
@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   button: {
-    backgroundColor: "#222",
+    backgroundColor: black,
     borderRadius: 6,
     width: 150,
     padding: 8
   },
   buttonText: {
-    color: "#fff",
+    color: white,
     textAlign: "center",
     fontSize: 18
   },

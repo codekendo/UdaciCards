@@ -7,6 +7,7 @@ import {
 } from "react-native"
 import React from "react"
 import { connect } from "react-redux"
+import { black, white } from "./Stylesheet"
 import { submitQuestion } from "../utils/api"
 import { addQuestionInRedux } from "../actions"
 
@@ -18,8 +19,7 @@ class NewQuestionView extends React.Component {
     title: this.props.title
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   submit = () => {
     const { question, answer, title, questions } = this.state
@@ -35,7 +35,6 @@ class NewQuestionView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-
         <TextInput
           style={styles.textInput}
           placeholder={"Question"}
@@ -71,13 +70,13 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   button: {
-    backgroundColor: "#222",
+    backgroundColor: black,
     borderRadius: 6,
     width: 150,
     padding: 8
   },
   buttonText: {
-    color: "#fff",
+    color: white,
     textAlign: "center",
     fontSize: 18
   },
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, { navigation }) {
   return {
     data: { ...state },
-    title:navigation.state.params.title
+    title: navigation.state.params.title
   }
 }
 

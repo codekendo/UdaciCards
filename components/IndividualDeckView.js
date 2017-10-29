@@ -1,8 +1,9 @@
 import React from "react"
 import { connect } from "react-redux"
-import { setDataInRedux } from "../actions"
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 import { setToday } from "../utils/api"
+import { setDataInRedux } from "../actions"
+import { white, gray, black } from "./Stylesheet"
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 
 class IndividualDeckView extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "#ddd",
+    backgroundColor: gray,
     justifyContent: "center",
     height: 250
   },
@@ -73,9 +74,9 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   whiteButton: {
-    backgroundColor: "#fff",
+    backgroundColor: white,
     borderRadius: 7,
-    borderColor: "#222",
+    borderColor: black,
     borderWidth: 1,
     padding: 10,
     paddingLeft: 50,
@@ -84,9 +85,9 @@ const styles = StyleSheet.create({
     margin: 10
   },
   blackButton: {
-    backgroundColor: "#222",
+    backgroundColor: black,
     borderRadius: 7,
-    borderColor: "#222",
+    borderColor: black,
     borderWidth: 1,
     padding: 10,
     paddingLeft: 50,
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     height: 45
   },
   whiteText: {
-    color: "#fff"
+    color: white
   }
 })
 

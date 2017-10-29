@@ -8,6 +8,7 @@ import {
 } from "react-native"
 import React from "react"
 import { AppLoading } from "expo"
+import { white, gray, black } from "./Stylesheet"
 import { connect } from "react-redux"
 import { getQuizData } from "../utils/api"
 import { setDataInRedux } from "../actions"
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     padding: 48,
     width: 359,
-    borderColor: "#222",
+    borderColor: black,
     borderBottomWidth: 1,
     flex: 1,
     flexWrap: "wrap"
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    color: "#222"
+    color: black
   },
   subTitle: {
     color: "#747474",

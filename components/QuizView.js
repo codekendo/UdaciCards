@@ -10,16 +10,16 @@ import {
   TouchableHighlight
 } from "react-native"
 import React from "react"
-import { clearLocalNotification, setLocalNotification } from "../utils/api"
 import FlipCard from "react-native-flip-card"
-
+import { white, red, black, green } from "./Stylesheet"
+import { clearLocalNotification, setLocalNotification } from "../utils/api"
 export default class QuizView extends React.Component {
   static navigationOptions = () => {
     return {
       title: `Quiz`,
-      headerTintColor: "#fff",
+      headerTintColor: white,
       headerStyle: {
-        backgroundColor: "#222"
+        backgroundColor: black
       }
     }
   }
@@ -184,7 +184,7 @@ export default class QuizView extends React.Component {
 
                 <Text
                   style={{
-                    color: "#d4271b",
+                    color: red,
                     fontSize: 24,
                     textAlign: "center"
                   }}
@@ -200,7 +200,7 @@ export default class QuizView extends React.Component {
 
                 <Text
                   style={{
-                    color: "#d4271b",
+                    color: red,
                     fontSize: 24
                   }}
                 >
@@ -220,13 +220,13 @@ export default class QuizView extends React.Component {
               style={[
                 styles.button,
                 {
-                  backgroundColor: "#008000",
+                  backgroundColor: green,
                   marginBottom: 12
                 }
               ]}
             >
               <Text
-                style={{ color: "#fff", textAlign: "center" }}
+                style={{ color: white, textAlign: "center" }}
                 onPress={this.nextWithCorrect}
               >
                 Correct
@@ -236,12 +236,12 @@ export default class QuizView extends React.Component {
               style={[
                 styles.button,
                 {
-                  backgroundColor: "#d4271b"
+                  backgroundColor: red
                 }
               ]}
             >
               <Text
-                style={{ color: "#fff", textAlign: "center" }}
+                style={{ color: white, textAlign: "center" }}
                 onPress={this.nextWithIncorrect}
               >
                 Incorrect
