@@ -16,7 +16,7 @@ class NewDeckView extends React.Component {
   }
 
   check = title => {
-    if (this.props.data[title]) {
+    if (this.props.data[title] || title === "") {
       return false
     } else {
       return true

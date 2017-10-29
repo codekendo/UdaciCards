@@ -13,7 +13,7 @@ export function clearLocalNotification() {
   )
 }
 
-function createNotification() {
+createNotification = () => {
   return {
     title: "Review Cards",
     body: "⏰ Don't forget to review cards for today!",
@@ -85,15 +85,15 @@ export function getQuizData() {
   return AsyncStorage.getItem(QUIZ_KEY).then(res => setOrFormat(res))
 }
 
-function formatResponse(res) {
+formatResponse = res => {
   return JSON.parse(res)
 }
 
-function setOrFormat(res) {
+setOrFormat = res => {
   return res === null ? setDummyData() : formatResponse(res)
 }
 
-function setDummyData() {
+setDummyData = () => {
   AsyncStorage.setItem("quizData", JSON.stringify(data))
   return data
 }
