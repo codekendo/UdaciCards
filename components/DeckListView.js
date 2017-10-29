@@ -1,4 +1,12 @@
 import {
+  gray,
+  white,
+  black,
+  subTitle,
+  titleText,
+  container
+} from "./Stylesheet"
+import {
   Text,
   View,
   Modal,
@@ -8,7 +16,6 @@ import {
 } from "react-native"
 import React from "react"
 import { AppLoading } from "expo"
-import { white, gray, black } from "./Stylesheet"
 import { connect } from "react-redux"
 import { getQuizData } from "../utils/api"
 import { setDataInRedux } from "../actions"
@@ -30,16 +37,17 @@ class DeckListView extends React.Component {
     const { title, questions } = targetObject
     return (
       <TouchableOpacity
-        style={[styles.mainContainer, styles.container]}
+        style={[styles.mainContainer, container]}
         onPress={() =>
           this.props.navigation.navigate("IndividualDeckView", {
             dataObject: targetObject
           })}
+        tle
       >
-        <Text style={styles.title}>
+        <Text style={[titleText]}>
           {title}
         </Text>
-        <Text style={styles.subTitle}>
+        <Text style={[subTitle]}>
           {questions.length + " cards"}
         </Text>
       </TouchableOpacity>
@@ -56,7 +64,7 @@ class DeckListView extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
+      <View style={[container]}>
         <FlatList
           data={Object.keys(data)}
           renderItem={this.renderItem}
@@ -75,19 +83,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flex: 1,
     flexWrap: "wrap"
-  },
-  container: {
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  title: {
-    fontSize: 32,
-    color: black
-  },
-  subTitle: {
-    color: "#747474",
-    fontSize: 18
   }
 })
 

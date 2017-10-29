@@ -5,9 +5,16 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native"
+import {
+  black,
+  white,
+  buttonText,
+  blackButton,
+  buttonContainer
+} from "./Stylesheet"
 import React from "react"
 import { connect } from "react-redux"
-import { black, white } from "./Stylesheet"
+
 import { submitQuestion } from "../utils/api"
 import { addQuestionInRedux } from "../actions"
 
@@ -47,9 +54,9 @@ class NewQuestionView extends React.Component {
           value={this.state.answer}
         />
 
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={this.submit}>
-            <Text style={styles.buttonText}>Submit</Text>
+        <View style={buttonContainer}>
+          <TouchableOpacity style={blackButton} onPress={this.submit}>
+            <Text style={buttonText}>Submit</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -63,25 +70,9 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 48,
-    borderColor: "gray",
     borderWidth: 2,
+    borderColor: "gray",
     marginBottom: 16
-  },
-  button: {
-    backgroundColor: black,
-    borderRadius: 6,
-    width: 150,
-    padding: 8
-  },
-  buttonText: {
-    color: white,
-    textAlign: "center",
-    fontSize: 18
-  },
-  buttonContainer: {
-    marginTop: 32,
-    justifyContent: "center",
-    alignItems: "center"
   }
 })
 

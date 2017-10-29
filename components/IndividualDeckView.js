@@ -2,7 +2,14 @@ import React from "react"
 import { connect } from "react-redux"
 import { setToday } from "../utils/api"
 import { setDataInRedux } from "../actions"
-import { white, gray, black } from "./Stylesheet"
+import {
+  white,
+  gray,
+  black,
+  container,
+  titleText,
+  subTitle
+} from "./Stylesheet"
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 
 class IndividualDeckView extends React.Component {
@@ -26,15 +33,31 @@ class IndividualDeckView extends React.Component {
     const { targetObject } = this.props
     return (
       <View>
-        <View style={styles.container}>
-          <Text style={styles.title}>
+        <View
+          style={[
+            container,
+            {
+              backgroundColor: gray,
+              height: 250
+            }
+          ]}
+        >
+          <Text style={titleText}>
             {targetObject.title}
           </Text>
-          <Text style={styles.subTitle}>
+          <Text style={subTitle}>
             {targetObject.questions.length} Cards
           </Text>
         </View>
-        <View style={[styles.container]}>
+        <View
+          style={[
+            container,
+            {
+              backgroundColor: gray,
+              height: 250
+            }
+          ]}
+        >
           <TouchableOpacity
             style={styles.whiteButton}
             onPress={() => {
@@ -50,7 +73,7 @@ class IndividualDeckView extends React.Component {
             style={styles.blackButton}
             onPress={this.handleQuizButton}
           >
-            <Text style={styles.whiteText}> Start Quiz</Text>
+            <Text style={{ color: white }}> Start Quiz</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -59,20 +82,6 @@ class IndividualDeckView extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: gray,
-    justifyContent: "center",
-    height: 250
-  },
-  title: {
-    fontSize: 32
-  },
-  subTitle: {
-    color: "#747474",
-    fontSize: 18
-  },
   whiteButton: {
     backgroundColor: white,
     borderRadius: 7,
@@ -93,9 +102,6 @@ const styles = StyleSheet.create({
     paddingLeft: 50,
     paddingRight: 50,
     height: 45
-  },
-  whiteText: {
-    color: white
   }
 })
 

@@ -5,11 +5,18 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native"
+import {
+  white,
+  black,
+  buttonText,
+  blackButton,
+  buttonContainer
+} from "./Stylesheet"
 import React from "react"
 import { connect } from "react-redux"
-import { white, black } from "./Stylesheet"
 import { addDeckInRedux } from "../actions"
 import { submitNewDeckTitle } from "../utils/api"
+
 class NewDeckView extends React.Component {
   state = {
     title: ""
@@ -47,9 +54,9 @@ class NewDeckView extends React.Component {
             value={this.state.title}
           />
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={this.submit}>
-            <Text style={styles.buttonText}>Submit</Text>
+        <View style={[buttonContainer]}>
+          <TouchableOpacity style={[blackButton]} onPress={this.submit}>
+            <Text style={[buttonText]}>Submit</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -61,22 +68,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 52,
     textAlign: "center"
-  },
-  button: {
-    backgroundColor: black,
-    borderRadius: 6,
-    width: 150,
-    padding: 8
-  },
-  buttonText: {
-    color: white,
-    textAlign: "center",
-    fontSize: 18
-  },
-  buttonContainer: {
-    marginTop: 32,
-    justifyContent: "center",
-    alignItems: "center"
   }
 })
 function mapStateToProps(state) {

@@ -13,6 +13,7 @@ import React from "react"
 import FlipCard from "react-native-flip-card"
 import { white, red, black, green } from "./Stylesheet"
 import { clearLocalNotification, setLocalNotification } from "../utils/api"
+
 export default class QuizView extends React.Component {
   static navigationOptions = () => {
     return {
@@ -261,26 +262,26 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   },
   face: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   },
   back: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   },
   questionText: {
     fontSize: 32,
     textAlign: "center"
   },
   button: {
-    borderRadius: 4,
     width: 150,
-    padding: 8
+    padding: 8,
+    borderRadius: 4
   }
 })
