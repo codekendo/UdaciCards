@@ -42,7 +42,6 @@ class DeckListView extends React.Component {
           this.props.navigation.navigate("IndividualDeckView", {
             dataObject: targetObject
           })}
-        tle
       >
         <Text style={[titleText]}>
           {title}

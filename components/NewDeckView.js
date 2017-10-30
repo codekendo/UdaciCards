@@ -33,9 +33,14 @@ class NewDeckView extends React.Component {
   submit = () => {
     const { title } = this.state
     if (this.check(title)) {
-      submitNewDeckTitle(title)
-        .then(() => this.props.addDeck(title))
-        .then(() => this.props.navigation.navigate("Home"))
+      submitNewDeckTitle(title).then(() => this.props.addDeck(title)).then(() =>
+        this.props.navigation.navigate("IndividualDeckView", {
+          dataObject: {
+            title: title,
+            questions: []
+          }
+        })
+      )
     } else {
       alert("Use a different title")
     }

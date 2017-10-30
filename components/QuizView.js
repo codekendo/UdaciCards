@@ -28,6 +28,10 @@ export default class QuizView extends React.Component {
   state = {
     quizViewCounter: 1,
     quizArrayIndex: 0,
+    completed: false,
+    questionsLength: 0,
+    scoreTally: 0,
+    questions: {},
     dataObject: {
       title: "JavaScript",
       questions: [
@@ -40,12 +44,7 @@ export default class QuizView extends React.Component {
           answer: "The componentDidMount lifecycle event"
         }
       ]
-    },
-    completed: false,
-    questionsLength: 0,
-    scoreTally: 0,
-    questions: {},
-    opacityValue: 0
+    }
   }
 
   componentDidMount() {
@@ -62,8 +61,8 @@ export default class QuizView extends React.Component {
 
     if (this.state.questionsLength === this.state.quizViewCounter) {
       this.setState(
-        () => ({
-          scoreTally: (this.state.scoreTally = this.state.scoreTally + 1),
+        prevState => ({
+          scoreTally: (prevState.scoreTally = prevState.scoreTally + 1),
           completed: true
         }),
         this.alert
@@ -72,33 +71,31 @@ export default class QuizView extends React.Component {
       //Render Success
     } else {
       //Render Next question for quiz
-      this.setState(() => ({
-        scoreTally: (this.state.scoreTally = this.state.scoreTally + 1),
-        quizViewCounter: (this.state.quizViewCounter =
-          this.state.quizViewCounter + 1),
-        quizArrayIndex: (this.state.quizArrayIndex =
-          this.state.quizArrayIndex + 1),
-        questions: this.state.dataObject.questions[this.state.quizArrayIndex]
+      this.setState(prevState => ({
+        scoreTally: (prevState.scoreTally = prevState.scoreTally + 1),
+        quizViewCounter: (prevState.quizViewCounter =
+          prevState.quizViewCounter + 1),
+        quizArrayIndex: (prevState.quizArrayIndex =
+          prevState.quizArrayIndex + 1),
+        questions: prevState.dataObject.questions[prevState.quizArrayIndex]
       }))
     }
   }
   nextWithIncorrect = () => {
     if (this.state.questionsLength === this.state.quizViewCounter) {
       this.setState(
-        () => ({
-          scoreTally: (this.state.scoreTally = this.state.scoreTally - 1),
+        prevState => ({
           completed: true
         }),
         this.alert
       )
     } else {
-      this.setState(() => ({
-        scoreTally: (this.state.scoreTally = this.state.scoreTally - 1),
-        quizViewCounter: (this.state.quizViewCounter =
-          this.state.quizViewCounter + 1),
-        quizArrayIndex: (this.state.quizArrayIndex =
-          this.state.quizArrayIndex + 1),
-        questions: this.state.dataObject.questions[this.state.quizArrayIndex]
+      this.setState(prevState => ({
+        quizViewCounter: (prevState.quizViewCounter =
+          prevState.quizViewCounter + 1),
+        quizArrayIndex: (prevState.quizArrayIndex =
+          prevState.quizArrayIndex + 1),
+        questions: prevState.dataObject.questions[prevState.quizArrayIndex]
       }))
     }
   }
@@ -120,7 +117,8 @@ export default class QuizView extends React.Component {
     if (scoreTally < 0) {
       finalTally = 0
     }
-    const textToReturn = "Score: " + finalTally / questionsLength * 100 + "%"
+    const score = Math.round(finalTally / questionsLength * 100)
+    const textToReturn = "Score: " + score + "%"
     return textToReturn
   }
 
@@ -154,12 +152,14 @@ export default class QuizView extends React.Component {
       quizArrayIndex,
       dataObject,
       questionsLength,
-      questions,
-      opacityValue
+      questions
     } = this.state
 
     return (
       <View style={styles.container}>
+        <Text>
+          {JSON.stringify(this.state)}
+        </Text>
         <ScrollView>
           <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 60 }}>
             {quizViewCounter}/{questionsLength}
